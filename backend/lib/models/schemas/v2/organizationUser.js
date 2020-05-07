@@ -4,20 +4,6 @@ const { model: User } = require("./user");
 const { model: Post } = require("./post");
 const { model: Comment } = require("./comment");
 
-// -- Schema
-function updateAuthorNameReferences(name) {
-  Post.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": name } },
-  );
-  Comment.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": name } },
-  );
-
-  return name;
-}
-
 function updateAuthorTypeReferences(type) {
   Post.where(
     { "author.authorId": this._id },
@@ -35,11 +21,6 @@ const organizationSchema = new Schema(
   {
     global: Boolean,
     industry: { required: true, type: String },
-    name: {
-      required: true,
-      set: updateAuthorNameReferences,
-      type: String,
-    },
     needs: {
       donations: { default: false, required: true, type: Boolean },
       other: { default: false, required: true, type: Boolean },

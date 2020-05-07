@@ -1,10 +1,21 @@
-// -- Imports
 const { Schema, model } = require("mongoose");
 const { schema: locationSchema } = require("./location");
 const { model: Post } = require("./post");
 const { model: Comment } = require("./comment");
 
-// -- Schema
+function updateAuthorNameReferences(name) {
+  Post.where(
+    { "author.authorId": this._id },
+    { $set: { "author.authorName": name } },
+  );
+  Comment.where(
+    { "author.authorId": this._id },
+    { $set: { "author.authorName": name } },
+  );
+
+  return name;
+}
+
 const userSchema = new Schema(
   {
     about: { maxLength: 100, trim: true, type: String },
@@ -17,12 +28,16 @@ const userSchema = new Schema(
       },
     },
     location: locationSchema,
+    name: {
+      required: true,
+      set: updateAuthorNameReferences,
+      type: String,
+    },
     photo: String,
   },
   { collection: "users", timestamps: true },
 );
 
-// -- Methods
 function updateAuthorLocationReference(location) {
   Post.where(
     { "author.authorId": this._id },
@@ -39,7 +54,6 @@ userSchema.path("location", {
   set: updateAuthorLocationReference,
 });
 
-// -- Indexes
 /* eslint-disable */
 userSchema.index({
   type: 1,
@@ -48,7 +62,6 @@ userSchema.index({
 });
 /* eslint-enable */
 
-// -- Model
 const User = model("User", userSchema);
 
 exports.schema = userSchema;

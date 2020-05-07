@@ -1,32 +1,15 @@
-// -- Imports
 const { Schema } = require("mongoose");
 const { model: User } = require("./user");
-const { model: Post } = require("./post");
-const { model: Comment } = require("./comment");
 
-// -- Schema
 function updateAuthorFirstNameReferences(firstName) {
-  Post.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": `${firstName} ${this.lastName}` } },
-  );
-  Comment.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": `${firstName} ${this.lastName}` } },
-  );
-
+  this.firstName = firstName;
+  this.name = this.fullName;
   return firstName;
 }
-function updateAuthorLastNameReferences(lastName) {
-  Post.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": `${this.firstName} ${lastName}` } },
-  );
-  Comment.where(
-    { "author.authorId": this._id },
-    { $set: { "author.authorName": `${this.firstName} ${lastName}` } },
-  );
 
+function updateAuthorLastNameReferences(lastName) {
+  this.lastName = lastName;
+  this.name = this.fullName;
   return lastName;
 }
 
@@ -67,15 +50,10 @@ const individualUserSchema = new Schema(
   { collection: "users" },
 );
 
-// -- Methods
-
 individualUserSchema.virtual("fullName").get(function getFullName() {
   return `${this.firstName} ${this.lastName}`;
 });
 
-// -- Indexes
-
-// -- Model
 const IndividualUser = User.discriminator(
   "IndividualUser",
   individualUserSchema,
