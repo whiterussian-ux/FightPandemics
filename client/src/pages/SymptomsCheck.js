@@ -110,6 +110,7 @@ const ModalStyle = styled(Modal)`
         padding: 0;
         border: none;
         background: transparent;
+        cursor: pointer;
       }
     }
     & img {
@@ -257,7 +258,7 @@ const Step1 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         How old are you?
@@ -307,7 +308,7 @@ const Step2 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         Are they experiencing any of these symptoms?
@@ -366,7 +367,7 @@ const Step3 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         Do any of these apply to them?
@@ -398,7 +399,7 @@ const Step4 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         Have they traveled internationally in the last 14 days?
@@ -454,7 +455,7 @@ const Step5 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         In the last 14 days, what was their exposure to others who are known to
@@ -489,7 +490,7 @@ const Step6 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         In the last 14 days, have they been in an area where COVID‑19 is
@@ -517,7 +518,7 @@ const Step7 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         Do they live in a care facility?
@@ -545,7 +546,7 @@ const Step8 = (props) => {
   return (
     <WizardStep alignItems="flex-start">
       <h5>
-        Question {props.currentStep - 1} / {props.totalSteps - 2}
+        Question {props.currentStep - 1} / {props.totalSteps - 1}
       </h5>
       <Heading level={3} className="h2" textAlign="left">
         Do they work in a medical facility?
