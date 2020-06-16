@@ -49,16 +49,23 @@ commentSchema.index({ likes: 1 });
 
 const Comment = model("Comment", commentSchema);
 
-function updateAuthorName(authorID, newAuthorName) {
-  return Comment.where(
-    { "author.id": authorID },
+function updateAuthorName(authorId, newAuthorName) {
+  return Comment.updateMany(
+    { "author.id": authorId },
     { $set: { "author.name": newAuthorName } },
   );
 }
 
-function updateAuthorType(authorID, newAuthorType) {
-  return Comment.where(
-    { "author.id": authorID },
+function updateAuthorPhoto(authorId, newAuthorPhoto) {
+  return Comment.updateMany(
+    { "author.id": authorId },
+    { $set: { "author.photo": newAuthorPhoto } },
+  );
+}
+
+function updateAuthorType(authorId, newAuthorType) {
+  return Comment.updateMany(
+    { "author.id": authorId },
     { $set: { "author.type": newAuthorType } },
   );
 }
@@ -67,5 +74,6 @@ module.exports = {
   model: Comment,
   schema: commentSchema,
   updateAuthorName,
+  updateAuthorPhoto,
   updateAuthorType,
 };

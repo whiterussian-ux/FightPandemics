@@ -1,7 +1,13 @@
 const { Schema } = require("mongoose");
 const { model: User } = require("./User");
-const { updateAuthorName: updatePostAuthorName } = require("./Post");
-const { updateAuthorName: updateCommentAuthorName } = require("./Comment");
+const {
+  updateAuthorName: updatePostAuthorName,
+  updateAuthorPhoto: updatePostAuthorPhoto,
+} = require("./Post");
+const {
+  updateAuthorName: updateCommentAuthorName,
+  updateAuthorPhoto: updateCommentAuthorPhoto,
+} = require("./Comment");
 
 const INDIVIDUAL_USER_TYPES = ["individual"];
 
@@ -9,23 +15,18 @@ function fullName(firstName, lastName) {
   return `${firstName} ${lastName}`;
 }
 
-function updateAuthorNameReferences(authorID, newName) {
-  updatePostAuthorName(authorID, newName);
-  updateCommentAuthorName(authorID, newName);
+async function syncAuthorNameReferences() {
+  console.log("Start");
+  const postUpdate = await updatePostAuthorName(this.id, this.name);
+  const commentUpdate = await updateCommentAuthorName(this.id, this.name);
+  console.log("End");
+  return [postUpdate, commentUpdate];
 }
 
-function updateAuthorFirstName(firstName) {
-  const newFullName = fullName(firstName, this.lastName);
-  updateAuthorNameReferences(this._id, newFullName);
-
-  return firstName;
-}
-
-function updateAuthorLastName(lastName) {
-  const newFullName = fullName(this.firstName, lastName);
-  updateAuthorNameReferences(this._id, newFullName);
-
-  return lastName;
+async function syncAuthorPhotoReferences() {
+  const postUpdate = await updatePostAuthorPhoto(this.id, this.photo);
+  const commentUpdate = await updateCommentAuthorPhoto(this.id, this.photo);
+  return [postUpdate, commentUpdate];
 }
 
 const individualUserSchema = new Schema(
@@ -70,6 +71,9 @@ const individualUserSchema = new Schema(
 individualUserSchema.virtual("name").get(function getFullName() {
   return fullName(this.firstName, this.lastName);
 });
+
+individualUserSchema.methods.syncAuthorNameReferences = syncAuthorNameReferences;
+individualUserSchema.methods.syncAuthorPhotoReferences = syncAuthorPhotoReferences;
 
 const IndividualUser = User.discriminator(
   "IndividualUser",

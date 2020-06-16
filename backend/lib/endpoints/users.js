@@ -66,24 +66,10 @@ async function routes(app) {
       // -- Update Author References if needed
       const { firstName, lastName, photo } = body;
       if (firstName || lastName) {
-        const postUpdate = await Post.updateMany(
-          { "author.id": updatedUser.id },
-          { $set: { "author.name": updatedUser.name } },
-        );
-        const commentUpdate = await Comment.updateMany(
-          { "author.id": updatedUser.id },
-          { $set: { "author.name": updatedUser.name } },
-        );
+        await updatedUser.syncAuthorNameReferences();
       }
       if (photo) {
-        const postUpdate = await Post.updateMany(
-          { "author.id": updatedUser.id },
-          { $set: { "author.photo": updatedUser.photo } },
-        );
-        const commentUpdate = await Comment.updateMany(
-          { "author.id": updatedUser.id },
-          { $set: { "author.photo": updatedUser.photo } },
-        );
+        await updatedUser.syncAuthorPhotoReferences();
       }
       return updatedUser;
     },

@@ -170,16 +170,23 @@ postSchema.index({ likes: 1 });
 // -- Model
 const Post = model("Post", postSchema);
 
-function updateAuthorName(authorID, newAuthorName) {
-  return Post.where(
-    { "author.id": authorID },
+async function updateAuthorName(authorId, newAuthorName) {
+  return Post.updateMany(
+    { "author.id": authorId },
     { $set: { "author.name": newAuthorName } },
   );
 }
 
-function updateAuthorType(authorID, newAuthorType) {
-  return Post.where(
-    { "author.id": authorID },
+async function updateAuthorPhoto(authorId, newAuthorPhoto) {
+  return Post.updateMany(
+    { "author.id": authorId },
+    { $set: { "author.photo": newAuthorPhoto } },
+  );
+}
+
+async function updateAuthorType(authorId, newAuthorType) {
+  return Post.updateMany(
+    { "author.id": authorId },
     { $set: { "author.type": newAuthorType } },
   );
 }
@@ -192,5 +199,6 @@ module.exports = {
   model: Post,
   schema: postSchema,
   updateAuthorName,
+  updateAuthorPhoto,
   updateAuthorType,
 };
