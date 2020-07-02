@@ -20,9 +20,7 @@ import TextAvatar from "components/TextAvatar";
 import TextFeedbackModal from "components/Feedback/TextFeedbackModal";
 import ThanksModal from "components/Feedback/ThanksModal";
 import withLabel from "components/Input/with-label";
-import { ORANGE_RED, WHITE, ROYAL_BLUE, TROPICAL_BLUE } from "constants/colors";
 import { theme } from "constants/theme";
-
 import {
   TOGGLE_STATE,
   SET_VALUE,
@@ -37,10 +35,7 @@ import {
 import Logo from "components/Logo";
 import logo from "assets/logo.svg";
 
-const NOTION_URL =
-  "https://www.notion.so/fightpandemics/FightPandemics-Overview-cd01dcfc05f24312ac454ac94a37eb5e";
-
-const { royalBlue, tropicalBlue, white } = theme.colors;
+const { royalBlue, tropicalBlue, white, orangeRed } = theme.colors;
 
 const drawerStyles = {
   position: "relative",
@@ -49,7 +44,7 @@ const drawerStyles = {
 };
 
 const sidebarStyle = {
-  background: `${ROYAL_BLUE}`,
+  background: `${royalBlue}`,
 };
 
 const MenuContainer = styled.div`
@@ -97,7 +92,7 @@ const NavItem = styled(List.Item)`
       height: 0 !important;
     }
     & .am-list-content {
-      color: ${WHITE};
+      color: ${white};
       cursor: pointer;
       font-family: "Poppins", sans-serif;
       font-size: ${(props) => (props.size === "small" ? "2rem" : "2.4rem")};
@@ -110,7 +105,7 @@ const NavItem = styled(List.Item)`
   }
 
   &.am-list-item-active {
-    background: ${TROPICAL_BLUE};
+    background: ${tropicalBlue};
   }
 `;
 
@@ -153,7 +148,7 @@ const CloseNav = styled(Button).attrs(() => ({
   background: unset;
   border-width: 0 !important;
   border-radius: 0;
-  color: ${WHITE};
+  color: ${white};
   cursor: pointer;
   font-size: 2rem;
   position: absolute;
@@ -163,7 +158,7 @@ const CloseNav = styled(Button).attrs(() => ({
 
   &.am-button-active {
     background: none;
-    color: ${WHITE};
+    color: ${white};
   }
   &::before {
     display: none;
@@ -171,14 +166,14 @@ const CloseNav = styled(Button).attrs(() => ({
 
   .am-icon {
     stroke-width: 2px;
-    stroke: ${WHITE};
+    stroke: ${white};
   }
 `;
 
 const ErrorAlert = styled(Alert)`
-  background-color: ${ORANGE_RED};
+  background-color: ${orangeRed};
   .ant-alert-message {
-    color: ${WHITE};
+    color: ${white};
   }
 `;
 
