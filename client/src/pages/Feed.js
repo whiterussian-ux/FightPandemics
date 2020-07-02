@@ -119,6 +119,7 @@ const FiltersWrapper = styled.div`
 const MenuWrapper = styled(Menu)`
   &.ant-menu {
     .ant-menu-item {
+      height: 3rem;
       border-left: 0.5rem solid ${white};
       color: ${darkerGray};
       font-size: ${theme.typography.size.large};
@@ -426,7 +427,9 @@ const Feed = (props) => {
         providers,
       } = props.history.location.state;
       location && dispatchAction(SET_VALUE, "location", location);
-      const value = Object.keys(HELP_TYPE).find(key => HELP_TYPE[key] === postType);
+      const value = Object.keys(HELP_TYPE).find(
+        (key) => HELP_TYPE[key] === postType,
+      );
       if (postType === HELP_TYPE.REQUEST) {
         // requesting help
         handleChangeType({ key: value });
@@ -537,7 +540,7 @@ const Feed = (props) => {
           <SiderWrapper
             breakpoint="md"
             className="site-layout-background"
-            width={290}
+            width="29rem"
           >
             <div>
               <MenuWrapper
