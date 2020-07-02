@@ -13,7 +13,7 @@ const SubmitButton = styled(BaseButton).attrs(({ size, inline }) => {
       color: #fff !important;
     `}
   width: 100%;
-  height: 47px;
+  height: 4.7rem;
 `;
 
 export default SubmitButton;
