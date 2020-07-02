@@ -13,6 +13,7 @@ import { asyncGetGeoLocation } from "utils/geolocation";
 import { theme } from "constants/theme";
 
 const { darkGray, darkerGray, primary, red, royalBlue } = theme.colors;
+const { small, medium } = theme.typography.size;
 
 const StyledSelect = styled(Select)`
   /* override antd extra x space */
@@ -50,6 +51,7 @@ const SubLabel = styled.small`
   color: ${(props) =>
     props.selected ? theme.colors.lightGray : theme.colors.green};
   display: block;
+  font-size: ${small};
 `;
 
 const displaySelectedAddressFromLocation = (location) => {
@@ -181,7 +183,7 @@ const LocationInput = ({
           <WhiteSpace />
           <div
             onClick={getAddressFromGeolocation}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontSize: medium }}
             className="svgicon-share-mylocation-size"
           >
             <SvgIcon src={navigation} style={{ marginRight: "1rem" }} />
