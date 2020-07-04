@@ -569,7 +569,10 @@ const Feed = (props) => {
               <h1>Feed</h1>
               <button onClick={handleCreatePost}>
                 Create a post
-                <SvgIcon src={creatPost} />
+                <SvgIcon
+                  src={creatPost}
+                  style={{ width: "5rem", height: "5rem" }}
+                />
               </button>
             </HeaderWrapper>
             <div>
