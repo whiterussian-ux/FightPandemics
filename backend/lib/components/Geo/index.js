@@ -1,6 +1,7 @@
 const { Client } = require("@googlemaps/google-maps-services-js");
+const MockClient = require("./mock-client");
 const {
-  config: { geo },
+  config: { geo, env },
 } = require("../../../config");
 const Location = require("./utils/Location");
 
@@ -21,7 +22,8 @@ const PLACE_DETAILS_FIELDS = [
 
 // const getCountryByCode = (code) => countryMap.get(code);
 
-const client = new Client({});
+const client =
+  env === "dev" && !geo.googleMapsApiKey ? new MockClient() : new Client({});
 
 const getAddressPredictions = async (input, sessiontoken) => {
   const params = {
