@@ -37,7 +37,7 @@ const Step1 = (props) => {
   };
   return (
     <WizardStep>
-      <WizardProgress className="text-primary">
+      <WizardProgress className="text-primary no-y-scroll">
         Question {props.currentStep}/{props.totalSteps}
       </WizardProgress>
       <StepTitle>What type of help do you need?</StepTitle>

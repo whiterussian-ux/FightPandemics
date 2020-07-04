@@ -48,7 +48,14 @@ a {
   background-color: ${WHITE} !important;
 }
 
-
+.no-x-scroll {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+.no-y-scroll {
+  overflow: hidden;
+}
 
 .app-drawer .am-drawer-sidebar {
   background-color: $white;

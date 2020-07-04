@@ -571,7 +571,7 @@ const Feed = (props) => {
                 <SvgIcon src={creatPost} />
               </button>
             </HeaderWrapper>
-            <div>
+            <div style={{ marginRight:"1rem" }}>
               <FilterBox />
             </div>
             <Posts

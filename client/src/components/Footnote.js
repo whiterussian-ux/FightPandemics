@@ -50,6 +50,14 @@ const FooterALink = styled.a`
   margin: 0 1rem;
   text-decoration-line: underline;
 `;
+const StyledDivTop = styled.div`
+  padding-left: 1rem;
+  padding-right: 1rem;
+`;
+const StyledDivBottom = styled.div`
+  padding-left: 5rem;
+  padding-right: 5rem;
+`;
 
 export default () => {
   const currentYear = new Date().getFullYear();
@@ -59,6 +67,7 @@ export default () => {
         Copyright {currentYear} FightPandemics. All rights reserved.
       </Copyright>
       <Policies>
+        <StyledDivTop>
         <FooterLink to={"/about-us"}>About Us</FooterLink> |{" "}
         <FooterLink to={"/faq"}>FAQ</FooterLink> |{" "}
         <FooterALink
@@ -68,9 +77,12 @@ export default () => {
         >
           Blog
         </FooterALink>
-        | <FooterLink to={"/terms-conditions"}>Terms & Conditions</FooterLink> |{" "}
+        | <FooterLink to={"/terms-conditions"}>Terms & Conditions</FooterLink> 
+        </StyledDivTop>
+        <StyledDivBottom>
         <FooterLink to={"/privacy-policy"}>Privacy Policy</FooterLink> |{" "}
-        <FooterLink to={"/cookies-policy"}>Cookies Policy</FooterLink>
+          <FooterLink to={"/cookies-policy"}>Cookies Policy</FooterLink>
+          </StyledDivBottom>
       </Policies>
     </StyledFooter>
   );

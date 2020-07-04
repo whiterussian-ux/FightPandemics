@@ -55,7 +55,7 @@ const Step1 = (props) => {
   };
 
   return (
-    <WizardStep>
+    <WizardStep className="no-x-scroll">
       <WizardProgress className="text-primary">
         Question {props.currentStep}/{props.totalSteps}
       </WizardProgress>
